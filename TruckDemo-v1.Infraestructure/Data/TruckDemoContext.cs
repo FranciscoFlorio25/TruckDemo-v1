@@ -24,7 +24,13 @@ namespace TruckDemo_v1.Infraestructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Course>(o => o.HasKey(o => o.Id));
+            modelBuilder.Entity<Lesson>(o => o.HasKey(o => o.Id));
+            modelBuilder.Entity<Section>(o => o.HasKey(o => o.Id));
 
+            modelBuilder.Entity<Course>().HasMany(S => S.Sections);
+            modelBuilder.Entity<Section>().HasMany(L => L.Lessons);
+            modelBuilder.Entity<Lesson>().HasIndex(S => S.SectionId);
         }
     }
 }
