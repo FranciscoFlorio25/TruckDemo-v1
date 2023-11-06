@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using TruckDemo_v1.Domain.ValueObject;
 using static System.Collections.Specialized.BitVector32;
 
 namespace TruckDemo_v1.Domain.Entities
@@ -17,7 +18,6 @@ namespace TruckDemo_v1.Domain.Entities
             Content = content;
             SectionId = sectionId;
             Order = order;
-            Metas = new HashSet<LessonMeta>();
         }
 
         public Guid Id { get; set; }
@@ -26,8 +26,6 @@ namespace TruckDemo_v1.Domain.Entities
         public Guid SectionId { get; set; }
         public int Order { get; set; }
         public Section Section { get; set; } = null!;
-
-        public ICollection<LessonMeta> Metas { get; set; }
 
     }
 }

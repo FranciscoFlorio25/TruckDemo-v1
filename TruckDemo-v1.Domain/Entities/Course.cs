@@ -5,8 +5,10 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using TruckDemo_v1.Domain.Entities;
+using TruckDemo_v1.Domain.ValueObject;
 
-namespace TruckDemo_v1.Domain.Entities
+namespace TruckDemo_v1.Domain.ValueObject
 {
     public class Course
     {
