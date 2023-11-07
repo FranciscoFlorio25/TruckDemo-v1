@@ -17,7 +17,7 @@ namespace TruckDemo_v1.Infraestructure.SqlServer
 
 
             var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../TruckDemo-v1"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
                 .AddEnvironmentVariables()
                 .AddJsonFile($"local.settings.json", true);
 

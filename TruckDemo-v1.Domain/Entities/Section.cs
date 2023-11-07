@@ -11,7 +11,7 @@ namespace TruckDemo_v1.Domain.Entities
 {
     public class Section
     {
-        public Section(string title, HtmlContent content, Guid courseId, int order)
+        public Section(string title, string content, Guid courseId, int order)
         {
             Title = title;
             Content = content;
@@ -23,7 +23,7 @@ namespace TruckDemo_v1.Domain.Entities
 
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public HtmlContent Content { get; set; }
+        public string Content { get; set; }
         public Guid CourseId { get; set; }
         public int Order { get; set; }
         public Course Course { get; set; } = null!;

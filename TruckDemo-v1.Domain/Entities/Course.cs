@@ -12,7 +12,7 @@ namespace TruckDemo_v1.Domain.ValueObject
 {
     public class Course
     {
-        public Course(string title, HtmlContent content, DateTime createdAt, string? subtitle, DateTime? lastUpdatedAt, DateTime? publishedAt)
+        public Course(string title, string content, DateTime createdAt, string? subtitle, DateTime? lastUpdatedAt, DateTime? publishedAt)
         {
             Title = title;
             Content = content;
@@ -26,7 +26,7 @@ namespace TruckDemo_v1.Domain.ValueObject
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string? Subtitle { get; set; }
-        public HtmlContent Content { get; set; }
+        public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? PublishedAt { get; set; }
         public DateTime? LastUpdatedAt { get; set; }

@@ -1,7 +1,8 @@
 {
     "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"
-    }
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "SqlServerConnectionString": "Data Source=Fran-Notebook;Initial Catalog=TruckDemoDB;Integrated Security=True;Pooling=False"
+  }
 }
