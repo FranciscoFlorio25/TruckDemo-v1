@@ -11,16 +11,16 @@ using TruckDemo_v1.Application.DTO.Result;
 
 namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
 {
-    public class GetBySeccionHandler : IRequestHandler<GetBySeccionRequest, Result<GetBySeccionResponse>>
+    public class GetBySectionHandler : IRequestHandler<GetBySectionRequest, Result<GetBySectionResponse>>
     {
         private readonly ITruckDemoContext _context;
 
-        public GetBySeccionHandler(ITruckDemoContext context)
+        public GetBySectionHandler(ITruckDemoContext context)
         {
             _context = context;
         }
 
-        public async Task<Result<GetBySeccionResponse>> Handle(GetBySeccionRequest request, CancellationToken cancellationToken)
+        public async Task<Result<GetBySectionResponse>> Handle(GetBySectionRequest request, CancellationToken cancellationToken)
         {
             var section = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SectionId);
 
@@ -38,7 +38,7 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
                 return "No existen lecciones vinculadas a la seccion requerida";
             
             }
-            return new GetBySeccionResponse(lessonList);
+            return new GetBySectionResponse(lessonList);
         }
     }
 }
