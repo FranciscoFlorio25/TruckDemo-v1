@@ -8,11 +8,8 @@ using TruckDemo_v1.Application.DTO.Result;
 
 namespace TruckDemo_v1.Application.UseCases.Courses.CreateCourse
 {
-    public record CreateCourseRequest(Guid CourseId, string Title,
+    public record CreateCourseRequest(string Title,
         string Content,
-        DateTime CreatedAt,
-        string? Subtitle,
-        DateTime? LastUpdatedAt,
-        DateTime? PublishedAt
+        string? Subtitle
     ) : IRequest<Result<CreateCourseResponse>>;
 }

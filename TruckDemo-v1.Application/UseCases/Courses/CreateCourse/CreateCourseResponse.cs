@@ -11,8 +11,6 @@ namespace TruckDemo_v1.Application.UseCases.Courses.CreateCourse
     public record CreateCourseResponse(Guid CourseId,string Title,
         string Content,
         DateTime CreatedAt,
-        string? Subtitle,
-        DateTime? LastUpdatedAt,
-        DateTime? PublishedAt
+        string? Subtitle
     );
 }

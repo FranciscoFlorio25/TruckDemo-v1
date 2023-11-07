@@ -9,5 +9,9 @@ namespace TruckDemo_v1.Application.UseCases.Courses.CreateCourse
 {
     public class CreateCourseValidator : AbstractValidator<CreateCourseRequest>
     {
+      public CreateCourseValidator() {
+            RuleFor(x => x.Title).NotNull().NotEmpty().WithMessage("El titulo del nuevo curso no puede ser nulo ni vacio");
+            RuleFor(x => x.Content).NotNull().NotEmpty().WithMessage("El contenido del nuevo curso no puede ser nulo ni vacio");
+      }
     }
 }
