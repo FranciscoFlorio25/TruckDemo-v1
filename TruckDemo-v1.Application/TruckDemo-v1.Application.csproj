@@ -20,8 +20,6 @@
 
   <ItemGroup>
     <Folder Include="UseCases\Courses\" />
-    <Folder Include="UseCases\Lessons\GetByCourse\" />
-    <Folder Include="UseCases\Lessons\GetBySeccion\" />
   </ItemGroup>
 
 </Project>
