@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckDemo_v1.Application.DTO.Lesson;
 
-namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySeccion
+namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
 {
     public record GetBySeccionResponse(IEnumerable<LessonDTO> Lessons);
 }

@@ -9,7 +9,7 @@ using TruckDemo_v1.Application.Data;
 using TruckDemo_v1.Application.DTO.Lesson;
 using TruckDemo_v1.Application.DTO.Result;
 
-namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySeccion
+namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
 {
     public class GetBySeccionHandler : IRequestHandler<GetBySeccionRequest, Result<GetBySeccionResponse>>
     {
@@ -22,23 +22,23 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySeccion
 
         public async Task<Result<GetBySeccionResponse>> Handle(GetBySeccionRequest request, CancellationToken cancellationToken)
         {
-            var seccion = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SeccionId);
+            var section = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SectionId);
 
-            if(seccion == null) {
+            if(section == null) {
 
                 return "La seccion con el id otorgado no existe";
 
             }
-            var seccionList = seccion.Lessons.Select(x =>
+            var lessonList = section.Lessons.Select(x =>
                  new LessonDTO( x.Id,x.Title,x.Content,x.SectionId,x.Order))
-                .Where(x => x.SectionId == request.SeccionId);
+                .Where(x => x.SectionId == request.SectionId);
 
-            if(!seccionList.Any() || seccionList== null) {
+            if(!lessonList.Any() || lessonList == null) {
 
                 return "No existen lecciones vinculadas a la seccion requerida";
             
             }
-            return new GetBySeccionResponse(seccionList);
+            return new GetBySeccionResponse(lessonList);
         }
     }
 }

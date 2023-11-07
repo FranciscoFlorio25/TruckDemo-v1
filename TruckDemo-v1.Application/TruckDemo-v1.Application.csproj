@@ -19,7 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Courses\" />
+    <Folder Include="UseCases\Courses\GetCourseById\" />
+    <Folder Include="UseCases\Courses\GetCourses\" />
+    <Folder Include="UseCases\Courses\DeleteCourse\" />
+    <Folder Include="UseCases\Courses\UpdateCourse\" />
   </ItemGroup>
 
 </Project>

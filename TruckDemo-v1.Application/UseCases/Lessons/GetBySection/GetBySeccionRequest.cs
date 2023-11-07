@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckDemo_v1.Application.DTO.Result;
 
-namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySeccion
+namespace TruckDemo_v1.Application.UseCases.Lessons.GetBySection
 {
-    public record GetBySeccionRequest(Guid SeccionId) : IRequest<Result<GetBySeccionResponse>>;
+    public record GetBySeccionRequest(Guid SectionId) : IRequest<Result<GetBySeccionResponse>>;
 }

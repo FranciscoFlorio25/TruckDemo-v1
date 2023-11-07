@@ -29,9 +29,9 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.UpdateLesson
                 return "No existe la lección con la id otorgada";
             }
 
-            var seccion = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SectionId);
+            var section = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SectionId);
 
-            if(seccion == null)
+            if(section == null)
             {
                 return "No existe la seccion con el id otorgado";
             }
