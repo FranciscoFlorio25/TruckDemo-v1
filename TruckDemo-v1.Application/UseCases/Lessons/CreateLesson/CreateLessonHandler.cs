@@ -23,7 +23,7 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.CreateLesson
         public async Task<Result<CreateLessonResponse>> Handle(CreateLessonRequest request, CancellationToken cancellationToken)
         {
 
-            var section = await _context.Sections.FirstOrDefaultAsync(x => x.Id == request.SectionId);
+            var section = await _context.Sections.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.SectionId);
 
             if(section==null)
             {

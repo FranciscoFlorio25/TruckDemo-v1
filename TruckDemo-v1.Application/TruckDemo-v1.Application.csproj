@@ -22,7 +22,6 @@
     <Folder Include="UseCases\Courses\" />
     <Folder Include="UseCases\Lessons\GetByCourse\" />
     <Folder Include="UseCases\Lessons\GetBySeccion\" />
-    <Folder Include="UseCases\Lessons\DeleteLesson\" />
     <Folder Include="UseCases\Lessons\UpdateLesson\" />
   </ItemGroup>
 
