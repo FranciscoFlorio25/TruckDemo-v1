@@ -10,7 +10,7 @@ using TruckDemo_v1.Application.DTO.Result;
 using TruckDemo_v1.Domain.Entities.Identity;
 using TruckDemo_v1.Domain.Enum;
 
-namespace TruckDemo_v1.Application.UseCases.Roles
+namespace TruckDemo_v1.Application.UseCases.Roles.GetAllRoles
 {
     public class GetAllRolesRequestHandler : IRequestHandler<GetAllRolesRequest, Result<GetAllRolesResponse>>
     {

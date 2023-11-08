@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TruckDemo_v1.Application.UseCases.Roles
+namespace TruckDemo_v1.Application.UseCases.Users.Login
 {
-    public record GetAllRolesResponse(string[] Roles);
+    public record LoginResponse(string AccessToken);
 }

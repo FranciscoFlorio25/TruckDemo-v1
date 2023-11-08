@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckDemo_v1.Application.DTO.Result;
 
-namespace TruckDemo_v1.Application.UseCases.Roles
+namespace TruckDemo_v1.Application.UseCases.Users.Login
 {
-    public record GetAllRolesRequest : IRequest<Result<GetAllRolesResponse>>;
+    public record LoginRequest(string Username, string Password) : IRequest<Result<LoginResponse>>;
 }

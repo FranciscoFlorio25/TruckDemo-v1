@@ -4,8 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using TruckDemo_v1.Application.Data;
+using TruckDemo_v1.Application.Managers;
 using TruckDemo_v1.Domain.Entities.Identity;
+using TruckDemo_v1.Domain.Enum;
 using TruckDemo_v1.Infraestructure.Data;
+using TruckDemo_v1.Infraestructure.Managers;
 
 namespace TruckDemo_v1.Infraestructure
 {
@@ -19,9 +22,10 @@ namespace TruckDemo_v1.Infraestructure
 
             services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<Role>()
-           .AddEntityFrameworkStores<TruckDemoContext>().AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<TruckDemoContext>().AddDefaultTokenProviders();
 
-  
+            services.AddScoped<IJwtManager, JwtManager>();
+
             return services;
         }
     }

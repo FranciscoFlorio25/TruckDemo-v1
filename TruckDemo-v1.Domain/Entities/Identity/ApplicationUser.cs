@@ -9,5 +9,10 @@ namespace TruckDemo_v1.Domain.Entities.Identity
 {
     public class ApplicationUser :IdentityUser<Guid>
     {
+        public ApplicationUser(string userName) {
+
+            UserName = userName;
+
+        }
     }
 }
