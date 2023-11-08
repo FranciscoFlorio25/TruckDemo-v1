@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TruckDemo_v1.Application.Data;
 using TruckDemo_v1.Domain.Entities;
@@ -6,7 +7,15 @@ using TruckDemo_v1.Domain.Entities.Identity;
 
 namespace TruckDemo_v1.Infraestructure.Data
 {
-    public class TruckDemoContext : IdentityDbContext<ApplicationUser,Role,Guid>, ITruckDemoContext
+    public class TruckDemoContext : IdentityDbContext<
+        ApplicationUser,
+        Role,
+        Guid,
+        ClaimUser,
+        RoleUser,
+        UserLogin,
+        RoleClaim,
+        UserToken>, ITruckDemoContext
     {
         public TruckDemoContext(DbContextOptions<TruckDemoContext> options) : base(options)
         {
@@ -17,6 +26,12 @@ namespace TruckDemo_v1.Infraestructure.Data
         public DbSet<Lesson> Lessons => Set<Lesson>();
 
         public DbSet<Section> Sections => Set<Section>();
+
+
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

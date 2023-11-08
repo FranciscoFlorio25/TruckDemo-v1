@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TruckDemo_v1.Application.Data;
 using TruckDemo_v1.Application.DTO.Identity.Users;
 using TruckDemo_v1.Application.DTO.Result;
 using TruckDemo_v1.Domain.Entities.Identity;
@@ -15,31 +16,22 @@ namespace TruckDemo_v1.Application.UseCases.Users.GetAllUsers
 {
     public class GetAllUsersHandler : IRequestHandler<GetAllUsersRequest, Result<GetAllUsersResponse>>
     {
-        public readonly UserManager<ApplicationUser> _userManager;
-        public GetAllUsersHandler(UserManager<ApplicationUser> userManager)
+        private readonly ITruckDemoContext _context;
+
+        public GetAllUsersHandler(ITruckDemoContext context)
         {
-            _userManager = userManager;
+            _context = context;
         }
 
         public async Task<Result<GetAllUsersResponse>> Handle(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
-            var userQuery = _userManager.Users.AsNoTracking();
+            var result = await _context.Users
+            .Join(_context.UserRoles, user => user.Id, userRole => userRole.UserId, (user, userRole) => new { user, userRole })
+            .Join(_context.Roles, ur => ur.userRole.RoleId, role => role.Id, (ur, role) => new { ur.user, role })
+            .Join(_context.UserClaims, ur => ur.user.Id, claim => claim.UserId, (ur, claim) => new { ur.user, ur.role.Name, claim.ClaimValue })
+            .ToListAsync();
 
-            if (!string.IsNullOrWhiteSpace(request.Search))
-            {
-                userQuery = userQuery.Where(x => x.Email!.ToLower().Contains(request.Search.ToLower()));
-                
-              
-            }
-            
-            var users = await userQuery.Select(async x => new GetAllUserItem
-            {
-                Id = x.Id,
-                Email = x.Email,
-                FirstName = (await _userManager.GetClaimsAsync(x)).FirstOrDefault(c => c.Type == "firstname")?.Value,
-                LastName = (await _userManager.GetClaimsAsync(x)).FirstOrDefault(c => c.Type == "lastname")?.Value
-            });
-
+            return result;
         }
     }
 }

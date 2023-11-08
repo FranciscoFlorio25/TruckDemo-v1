@@ -21,6 +21,7 @@ namespace TruckDemo_v1.Application.UseCases.Courses.CreateCourse
 
         public async Task<Result<CreateCourseResponse>> Handle(CreateCourseRequest request, CancellationToken cancellationToken)
         {
+            
             Course course = new(request.Title,
                 request.Content,
                 DateTime.Now,

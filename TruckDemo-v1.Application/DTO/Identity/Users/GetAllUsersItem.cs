@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace TruckDemo_v1.Application.DTO.Identity.Users
 {
-    public record GetAllUserItem(Guid Id, string Email, string FirstName, string LastName);
+    public record GetAllUserItem(Guid Id, string Email,string role, string FirstName, string LastName);
 }
