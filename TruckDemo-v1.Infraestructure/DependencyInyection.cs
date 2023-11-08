@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using TruckDemo_v1.Application.Data;
+using TruckDemo_v1.Domain.Entities.Identity;
 using TruckDemo_v1.Infraestructure.Data;
 
 namespace TruckDemo_v1.Infraestructure
@@ -19,6 +17,11 @@ namespace TruckDemo_v1.Infraestructure
             services.AddDbContext<ITruckDemoContext, TruckDemoContext>
                 (o => o.UseSqlServer(configuration["SqlServerConnectionString"]));
 
+            services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<Role>()
+           .AddEntityFrameworkStores<TruckDemoContext>().AddDefaultTokenProviders();
+
+  
             return services;
         }
     }

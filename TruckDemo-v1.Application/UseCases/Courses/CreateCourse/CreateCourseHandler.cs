@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckDemo_v1.Application.Data;
 using TruckDemo_v1.Application.DTO.Result;
-using TruckDemo_v1.Domain.ValueObject;
+using TruckDemo_v1.Domain.Entities;
 
 namespace TruckDemo_v1.Application.UseCases.Courses.CreateCourse
 {

@@ -1,16 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using TruckDemo_v1.Application.Data;
 using TruckDemo_v1.Domain.Entities;
-using TruckDemo_v1.Domain.ValueObject;
+using TruckDemo_v1.Domain.Entities.Identity;
 
 namespace TruckDemo_v1.Infraestructure.Data
 {
-    public class TruckDemoContext : DbContext, ITruckDemoContext
+    public class TruckDemoContext : IdentityDbContext<ApplicationUser,Role,Guid>, ITruckDemoContext
     {
         public TruckDemoContext(DbContextOptions<TruckDemoContext> options) : base(options)
         {
@@ -24,13 +20,25 @@ namespace TruckDemo_v1.Infraestructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Course>(o => o.HasKey(o => o.Id));
-            modelBuilder.Entity<Lesson>(o => o.HasKey(o => o.Id));
-            modelBuilder.Entity<Section>(o => o.HasKey(o => o.Id));
+            //configuramos las tablas de identity
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Course>().HasMany(S => S.Sections);
-            modelBuilder.Entity<Section>().HasMany(L => L.Lessons);
-            modelBuilder.Entity<Lesson>().HasIndex(S => S.SectionId);
+            modelBuilder.Entity<Course>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasMany(c => c.Sections).WithOne(s => s.Course).HasForeignKey(s => s.CourseId);
+            });
+
+            modelBuilder.Entity<Section>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasMany(s => s.Lessons).WithOne(l => l.Section).HasForeignKey(l => l.SectionId);
+            });
+
+            modelBuilder.Entity<Lesson>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
         }
     }
 }

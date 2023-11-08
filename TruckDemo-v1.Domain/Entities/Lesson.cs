@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using TruckDemo_v1.Domain.ValueObject;
+using TruckDemo_v1.Domain.Entities;
 using static System.Collections.Specialized.BitVector32;
 
 namespace TruckDemo_v1.Domain.Entities
