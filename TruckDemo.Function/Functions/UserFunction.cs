@@ -5,6 +5,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using TruckDemo.Function.Extensions;
+using TruckDemo.Function.Middlewere;
 using TruckDemo_v1.Application.UseCases.Users.ApplyRoles;
 using TruckDemo_v1.Application.UseCases.Users.CreateDefaultUser;
 using TruckDemo_v1.Application.UseCases.Users.CreateUser;
@@ -37,6 +38,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("CreateUser")]
+        [AuthentificationMiddlewere("admin")]
         public async Task<HttpResponseData> CreateUser([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route ="user")] HttpRequestData req)
         {
             var request = await req.ReadFromJsonAsync<CreateUserRequest>();
@@ -44,6 +46,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("ApplyRole")]
+        [AuthentificationMiddlewere("admin")]
         public async Task<HttpResponseData> ApplyRole([HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "user/id")] HttpRequestData req)
         {
             var request = await req.ReadFromJsonAsync<ApplyRoleRequest>();
@@ -51,6 +54,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("GetAllUsers")]
+        [AuthentificationMiddlewere("admin")]
         public async Task<HttpResponseData> GetAllUsers([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "user")] HttpRequestData req)
         {
             var request = new GetAllUsersRequest();
@@ -59,6 +63,7 @@ namespace TruckDemo.Function.Functions
 
 
         [Function("GetAllRoles")]
+        [AuthentificationMiddlewere("admin")]
         public async Task<HttpResponseData> GetAllRoles([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "user")] HttpRequestData req)
         {
             var request = new GetAllUsersRequest();

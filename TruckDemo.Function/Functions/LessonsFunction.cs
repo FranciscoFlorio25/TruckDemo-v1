@@ -4,6 +4,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using TruckDemo.Function.Extensions;
+using TruckDemo.Function.Middlewere;
 using TruckDemo_v1.Application.UseCases.Lessons.CreateLesson;
 using TruckDemo_v1.Application.UseCases.Lessons.DeleteLesson;
 using TruckDemo_v1.Application.UseCases.Lessons.GetById;
@@ -22,6 +23,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("GetLessonsBySection")]
+        [AuthentificationMiddlewere("reader")]
         public async Task<HttpResponseData> GetLessonsBySection([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "lessons/sectionid")] HttpRequestData req)
         {
             string sectionid = req.Query["sectionid"];

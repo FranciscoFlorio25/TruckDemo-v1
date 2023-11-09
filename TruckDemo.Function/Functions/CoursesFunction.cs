@@ -4,6 +4,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using TruckDemo.Function.Extensions;
+using TruckDemo.Function.Middlewere;
 using TruckDemo_v1.Application.UseCases.Courses.CreateCourse;
 using TruckDemo_v1.Application.UseCases.Courses.DeleteCourse;
 using TruckDemo_v1.Application.UseCases.Courses.GetCourseById;
@@ -24,6 +25,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("GetCourses")]
+        [AuthentificationMiddlewere("reader")]
         public async Task<HttpResponseData> GetCourses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "course")] HttpRequestData req)
         {
             var request = new GetCoursesRequest();
