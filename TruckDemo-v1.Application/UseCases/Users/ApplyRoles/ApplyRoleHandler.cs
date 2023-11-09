@@ -22,7 +22,7 @@ namespace TruckDemo_v1.Application.UseCases.Users.ApplyRoles
         {
             IList<string> getRoles = Enum.GetNames(typeof(Domain.Enum.RoleName));
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id.Equals(request.UserId.ToString()));
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == request.UserId);
 
             if (user == null)
             {

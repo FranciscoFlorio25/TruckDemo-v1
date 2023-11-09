@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckDemo_v1.Application.DTO.Result;
 
-namespace TruckDemo_v1.Application.UseCases.Roles.GetAllRoles
+namespace TruckDemo_v1.Application.UseCases.Users.CreateDefaultUser
 {
-    public record GetAllRolesRequest() : IRequest<Result<GetAllRolesResponse>>;
+    public record CreateDefaultUserRequest () : IRequest<Result>;
 }

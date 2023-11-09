@@ -28,10 +28,21 @@ namespace TruckDemo_v1.Application.UseCases.Users.GetAllUsers
             var result = await _context.Users
             .Join(_context.UserRoles, user => user.Id, userRole => userRole.UserId, (user, userRole) => new { user, userRole })
             .Join(_context.Roles, ur => ur.userRole.RoleId, role => role.Id, (ur, role) => new { ur.user, role })
-            .Join(_context.UserClaims, ur => ur.user.Id, claim => claim.UserId, (ur, claim) => new { ur.user, ur.role.Name, claim.ClaimValue })
+            .Join(_context.UserClaims, ur => ur.user.Id, claim => claim.UserId, (ur, claim) => new { ur.user, ur.role.Name, claim })
             .ToListAsync();
 
-            return result;
+
+            var users = result.Select(x => new GetAllUserItem(
+                    x.user.Id,
+                    x.user.Email,
+                    x.Name,
+                    x.claim.ClaimType == "Name" ? x.claim.ClaimValue : null,
+                    x.claim.ClaimType == "FamilyName" ? x.claim.ClaimValue : null
+
+                )
+            );
+            return new GetAllUsersResponse( users );
+            
         }
     }
 }
