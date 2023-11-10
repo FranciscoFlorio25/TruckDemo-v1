@@ -31,7 +31,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("CreateDefaultUser")]
-        public async Task<HttpResponseData> CreateDefaultUser([HttpTrigger(AuthorizationLevel.Anonymous,"post",Route = "user")] HttpRequestData req)
+        public async Task<HttpResponseData> CreateDefaultUser([HttpTrigger(AuthorizationLevel.Anonymous,"post",Route = "user/default")] HttpRequestData req)
         {
             var request = new CreateDefaultUserRequest();
             return await _mediator.Send(request).ToResponseData(req);
@@ -64,7 +64,7 @@ namespace TruckDemo.Function.Functions
 
         [Function("GetAllRoles")]
         [AuthentificationMiddlewere("admin")]
-        public async Task<HttpResponseData> GetAllRoles([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "user")] HttpRequestData req)
+        public async Task<HttpResponseData> GetAllRoles([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "user/role")] HttpRequestData req)
         {
             var request = new GetAllUsersRequest();
             return await _mediator.Send(request).ToResponseData(req);

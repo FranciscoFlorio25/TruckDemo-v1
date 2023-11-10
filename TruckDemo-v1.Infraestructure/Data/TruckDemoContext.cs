@@ -28,10 +28,6 @@ namespace TruckDemo_v1.Infraestructure.Data
         public DbSet<Section> Sections => Set<Section>();
 
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

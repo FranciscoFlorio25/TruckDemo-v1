@@ -25,7 +25,6 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("GetCourses")]
-        [AuthentificationMiddlewere("reader")]
         public async Task<HttpResponseData> GetCourses([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "course")] HttpRequestData req)
         {
             var request = new GetCoursesRequest();
@@ -44,6 +43,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("PostCourse")]
+        [AuthentificationMiddlewere("Admin")]
         public async Task<HttpResponseData> PostCourse([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "course")] HttpRequestData req)
         {
 

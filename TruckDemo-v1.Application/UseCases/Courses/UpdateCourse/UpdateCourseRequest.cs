@@ -12,4 +12,4 @@ namespace TruckDemo_v1.Application.UseCases.Courses.UpdateCourse
         string Title,
         string Content,
         string? Subtitle) : IRequest<Result<UpdateCourseResponse>>;
-}
+} 

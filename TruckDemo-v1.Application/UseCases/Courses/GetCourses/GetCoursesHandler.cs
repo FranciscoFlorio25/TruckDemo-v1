@@ -14,6 +14,12 @@ namespace TruckDemo_v1.Application.UseCases.Courses.GetCourses
     public class GetCoursesHandler : IRequestHandler<GetCoursesRequest, Result<GetCoursesResponse>>
     {
         private readonly ITruckDemoContext _context;
+
+        public GetCoursesHandler(ITruckDemoContext context)
+        {
+            _context = context;
+        }
+
         public async Task<Result<GetCoursesResponse>> Handle(GetCoursesRequest request, CancellationToken cancellationToken)
         {
             var courses = await _context.Courses.AsNoTracking().ToListAsync();
