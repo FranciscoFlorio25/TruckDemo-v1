@@ -20,7 +20,7 @@ namespace TruckDemo_v1.Application.UseCases.Lessons.GetById
 
         public async Task<Result<GetByIdResponse>> Handle(GetByIdRequest request, CancellationToken cancellationToken)
         {
-            var lesson = await _context.Lessons.AsNoTracking().FirstOrDefaultAsync();
+            var lesson = await _context.Lessons.AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.LessonId);
 
             if(lesson == null) {
                 return "La lección con el id otorgado no existe";
