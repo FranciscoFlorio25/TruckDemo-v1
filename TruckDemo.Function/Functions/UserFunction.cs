@@ -24,7 +24,7 @@ namespace TruckDemo.Function.Functions
         }
 
         [Function("Login")]
-        public async Task<HttpResponseData> Login([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "user/id")] HttpRequestData req)
+        public async Task<HttpResponseData> Login([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "user/login")] HttpRequestData req)
         {
             var request = await req.ReadFromJsonAsync<LoginRequest>();
             return await _mediator.Send(request!).ToResponseData(req);

@@ -20,10 +20,8 @@ namespace TruckDemo_v1.Infraestructure
             services.AddDbContext<ITruckDemoContext, TruckDemoContext>
                 (o => o.UseSqlServer(configuration["SqlServerConnectionString"]));
 
-            services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddRoles<Role>()
+            services.AddIdentity<ApplicationUser,Role>(options => options.SignIn.RequireConfirmedAccount = true)            
             .AddEntityFrameworkStores<TruckDemoContext>().AddDefaultTokenProviders();
-
             services.AddScoped<IJwtManager, JwtManager>();
 
             return services;

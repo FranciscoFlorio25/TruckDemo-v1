@@ -11,7 +11,7 @@ namespace TruckDemo_v1.Application.UseCases.Users.CreateUser
     public record CreateUserRequest(string Email,
         string Password,
         string FirstName,
-        string LastName, string Gender) : IRequest<Result<CreateUserResponse>>;
+        string LastName) : IRequest<Result<CreateUserResponse>>;
 
 
 }

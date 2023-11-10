@@ -27,7 +27,8 @@ namespace TruckDemo_v1.Infraestructure.Managers
         {
 
             var key = Encoding.ASCII.GetBytes
-            (_securityOptions.SecretKey);
+            (/*_securityOptions.SecretKey*/ "Equipo13");
+            
 
             List<Claim> tokenClaims = new(claims)
             {
@@ -39,8 +40,10 @@ namespace TruckDemo_v1.Infraestructure.Managers
             {
                 Subject = new ClaimsIdentity(tokenClaims),
                 Expires = DateTime.UtcNow.AddDays(7),
-                Issuer = _securityOptions.Issuer,
-                Audience = _securityOptions.Audience,
+                //Issuer = _securityOptions.Issuer,
+                Issuer = "Equipo13 ",
+                //Audience = _securityOptions.Audience,
+                Audience = "Backend",
                 SigningCredentials = new SigningCredentials
                 (new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256)
